@@ -22,24 +22,28 @@
 
 <body>
 
-    <!-- =================================
-         BACKGROUND MUSIC
-    ================================== -->
+
+    <!-- =========================================
+         MUSIC
+    ========================================== -->
 
     <audio
         id="daylight-music"
         loop
+        preload="auto"
     >
+
         <source
-            src="Daylight.mp3"
+            src="music/daylight.mp3"
             type="audio/mpeg"
         >
+
     </audio>
 
 
-    <!-- =================================
+    <!-- =========================================
          MUSIC BUTTON
-    ================================== -->
+    ========================================== -->
 
     <button
         id="music-button"
@@ -47,73 +51,78 @@
         onclick="toggleMusic()"
         aria-label="Toggle music"
     >
+
         ♫
+
     </button>
 
 
-    <!-- =================================
+
+    <!-- =========================================
          DECORATIVE LIGHT
-    ================================== -->
+    ========================================== -->
 
     <div class="sun-glow"></div>
 
     <div class="light-particle particle-one"></div>
+
     <div class="light-particle particle-two"></div>
+
     <div class="light-particle particle-three"></div>
 
 
-    <!-- =================================
-         MAIN CONTENT
-    ================================== -->
 
-    <main class="opening-screen">
+    <!-- =========================================
+         STEP 1 — OPENING
+    ========================================== -->
 
-
-        <!-- Small label -->
+    <main
+        id="opening-screen"
+        class="opening-screen"
+    >
 
         <p class="eyebrow">
             A LITTLE SOMETHING FOR YOU
         </p>
 
 
-        <!-- Main title -->
-
         <h1>
             Ashlyn
         </h1>
 
 
-        <!-- Decorative line -->
-
         <div class="sun-line">
+
             <span></span>
+
             ☼
+
             <span></span>
+
         </div>
 
 
-        <!-- Main message -->
-
         <p class="opening-message">
+
             I made something small
             <br>
             just for you.
+
         </p>
 
-
-        <!-- Start button -->
 
         <button
             id="begin-button"
             class="begin-button"
             onclick="beginExperience()"
         >
+
             Begin
+
             <span>✦</span>
+
         </button>
 
-
-        <!-- Small hint -->
 
         <p class="hint">
             headphones recommended ♫
@@ -122,43 +131,281 @@
     </main>
 
 
-    <!-- =================================
-         NEXT SCREEN
-         
-         This is only a temporary screen.
-         We'll replace it in Step 2 with
-         the actual photo experience.
-    ================================== -->
+
+    <!-- =========================================
+         STEP 2 — PHOTO EXPERIENCE
+    ========================================== -->
 
     <section
-        id="intro-screen"
-        class="intro-screen"
+        id="photo-screen"
+        class="photo-screen"
     >
 
-        <div class="intro-content">
+
+        <!-- PHOTO -->
+
+        <div class="photo-container">
+
+            <img
+                id="memory-image"
+                src=""
+                alt="A memory of Ashlyn"
+            >
+
+            <div class="photo-overlay"></div>
+
+        </div>
+
+
+
+        <!-- PHOTO INFORMATION -->
+
+        <div class="memory-info">
+
+            <div
+                id="photo-counter"
+                class="photo-counter"
+            >
+                01 / 08
+            </div>
+
+
+            <div class="memory-line"></div>
+
+
+            <p
+                id="memory-caption"
+                class="memory-caption"
+            >
+                A little moment worth remembering.
+            </p>
+
+
+            <button
+                id="next-photo"
+                class="next-button"
+                onclick="nextPhoto()"
+            >
+
+                <span>Continue</span>
+
+                <span class="arrow">
+                    →
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- SWIPE HINT -->
+
+        <p class="swipe-hint">
+            tap or swipe to continue
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================================
+         STEP 3 — MESSAGE
+    ========================================== -->
+
+    <section
+        id="message-screen"
+        class="message-screen"
+    >
+
+        <div class="message-container">
+
 
             <p class="eyebrow">
-                FOR YOU
+                A FEW WORDS FOR YOU
             </p>
+
 
             <h2>
-                Let's begin.
+                Before the day ends...
             </h2>
 
-            <div class="intro-line"></div>
 
-            <p>
-                There's a little more
-                waiting for you.
-            </p>
+            <div class="message-decoration">
+                ✦
+            </div>
+
+
+            <div class="letter">
+
+                <p>
+                    Happy birthday, Ashlyn.
+                </p>
+
+
+                <p>
+                    I hope today reminds you of
+                    just how much you are appreciated.
+                    There are people who are genuinely
+                    happy that you exist, and I hope
+                    you never forget that.
+                </p>
+
+
+                <p>
+                    Life can get busy, confusing,
+                    and sometimes a little overwhelming.
+                    But I hope you continue finding
+                    little reasons to smile along
+                    the way.
+                </p>
+
+
+                <p>
+                    Keep being yourself.
+                    Keep chasing the things that
+                    make you happy.
+                    And keep becoming the person
+                    you're meant to be.
+                </p>
+
+
+                <p>
+                    I may not always have the perfect
+                    words to say, but I hope this
+                    little experience can say one thing
+                    clearly:
+                </p>
+
+
+                <p class="emphasis">
+
+                    I'm really glad you're here.
+
+                </p>
+
+            </div>
+
+
+            <button
+                class="next-button message-next"
+                onclick="showFinale()"
+            >
+
+                There's one more thing
+
+                <span>
+                    ✦
+                </span>
+
+            </button>
 
         </div>
 
     </section>
 
 
+
+    <!-- =========================================
+         STEP 4 — BIRTHDAY FINALE
+    ========================================== -->
+
+    <section
+        id="finale-screen"
+        class="finale-screen"
+    >
+
+
+        <div class="finale-glow"></div>
+
+
+        <div class="finale-content">
+
+
+            <div class="small-sun">
+                ☼
+            </div>
+
+
+            <p class="eyebrow">
+                HAPPY BIRTHDAY
+            </p>
+
+
+            <h2>
+                Happy Birthday,
+                <br>
+                Ashlyn.
+            </h2>
+
+
+            <div class="final-line">
+
+                <span></span>
+
+                ✦
+
+                <span></span>
+
+            </div>
+
+
+            <p class="final-message">
+
+                May this next chapter
+                <br>
+                be filled with
+                <br>
+                beautiful days,
+                <br>
+                genuine smiles,
+                <br>
+                and moments
+                <br>
+                worth remembering.
+
+            </p>
+
+
+            <div class="final-sun">
+                ☀
+            </div>
+
+
+            <p class="closing">
+
+                Here's to another year
+                <br>
+                of you.
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         STEP 5 — FINAL
+    ========================================== -->
+
+    <div
+        id="ending-screen"
+        class="ending-screen"
+    >
+
+        <p>
+            Made with a little sunshine ☀️
+        </p>
+
+    </div>
+
+
+
     <script src="script.js"></script>
 
 </body>
 
-</html>
+    </html>
