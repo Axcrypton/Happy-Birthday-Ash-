@@ -42,36 +42,69 @@ const memoryCaption =
 // MUSIC
 // ============================================
 
-let musicPlaying = false;
+const music =
+    document.getElementById("daylight-music");
+
+const musicButton =
+    document.getElementById("music-button");
 
 
-function toggleMusic() {
+// ============================================
+// BEGIN MUSIC
+// ============================================
 
-    if (musicPlaying) {
+function startMusic() {
 
-        music.pause();
-
-        musicPlaying = false;
-
-        musicButton.textContent = "♪";
-
-        return;
-    }
-
+    music.volume = 0.5;
 
     music.play()
         .then(() => {
 
-            musicPlaying = true;
-
             musicButton.textContent = "♫";
 
         })
-        .catch(() => {
+        .catch((error) => {
 
-            musicButton.textContent = "♪";
+            console.error(
+                "Music failed to start:",
+                error
+            );
 
         });
+
+}
+
+
+// ============================================
+// MUSIC TOGGLE
+// ============================================
+
+function toggleMusic() {
+
+    if (music.paused) {
+
+        music.play()
+            .then(() => {
+
+                musicButton.textContent = "♫";
+
+            })
+            .catch((error) => {
+
+                console.error(
+                    "Music failed:",
+                    error
+                );
+
+            });
+
+    } else {
+
+        music.pause();
+
+        musicButton.textContent = "♪";
+
+    }
 
 }
 
@@ -140,24 +173,7 @@ let currentPhoto = 0;
 function beginExperience() {
 
 
-    // Start music
-
-    music.volume = 0.5;
-
-
-    music.play()
-        .then(() => {
-
-            musicPlaying = true;
-
-            musicButton.textContent = "♫";
-
-        })
-        .catch(() => {
-
-            musicPlaying = false;
-
-        });
+    startMusic();
 
 
     // Fade opening
