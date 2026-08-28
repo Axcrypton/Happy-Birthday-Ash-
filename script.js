@@ -115,13 +115,13 @@ const captions = [
 
     "Here's to the little things.",
 
-    "A memory that made me smile.",
+    "A memory that is special for you",
 
-    "Some days become memories.",
+    "This and all of the many pictures",
 
-    "And some memories become treasures.",
+    "You had throughout your life",
 
-    "One more moment before we continue."
+    "Is a memory captured of who we see right now"
 
 ];
 
