@@ -2,41 +2,39 @@
 // ASHLYN BIRTHDAY EXPERIENCE
 // ============================================
 
-
 // ============================================
 // ELEMENTS
 // ============================================
 
 const music =
-    document.getElementById("daylight-music");
+document.getElementById("daylight-music");
 
 const musicButton =
-    document.getElementById("music-button");
+document.getElementById("music-button");
 
 const openingScreen =
-    document.getElementById("opening-screen");
+document.getElementById("opening-screen");
 
 const photoScreen =
-    document.getElementById("photo-screen");
+document.getElementById("photo-screen");
 
 const messageScreen =
-    document.getElementById("message-screen");
+document.getElementById("message-screen");
 
 const finaleScreen =
-    document.getElementById("finale-screen");
+document.getElementById("finale-screen");
 
 const endingScreen =
-    document.getElementById("ending-screen");
+document.getElementById("ending-screen");
 
 const memoryImage =
-    document.getElementById("memory-image");
+document.getElementById("memory-image");
 
 const photoCounter =
-    document.getElementById("photo-counter");
+document.getElementById("photo-counter");
 
 const memoryCaption =
-    document.getElementById("memory-caption");
-
+document.getElementById("memory-caption");
 
 // ============================================
 // PHOTOS
@@ -44,17 +42,18 @@ const memoryCaption =
 
 const photos = [
 
-    "photos/ashlyn01.png",
-    "photos/ashlyn02.png",
-    "photos/ashlyn03.png",
-    "photos/ashlyn04.png",
-    "photos/ashlyn05.png",
-    "photos/ashlyn06.jpeg",
-    "photos/ashlyn07.jpeg",
-    "photos/ashlyn08.jpeg"
+```
+"ashlyn01.png",
+"ashlyn02.png",
+"ashlyn03.png",
+"ashlyn04.png",
+"ashlyn05.png",
+"ashlyn06.jpeg",
+"ashlyn07.jpeg",
+"ashlyn08.jpeg"
+```
 
 ];
-
 
 // ============================================
 // PHOTO CAPTIONS
@@ -62,469 +61,25 @@ const photos = [
 
 const captions = [
 
-    "A little moment worth remembering.",
+```
+"A little moment worth remembering.",
 
-    "Some memories deserve to stay.",
+"Some memories deserve to stay.",
 
-    "A moment captured in time.",
+"A moment captured in time.",
 
-    "Here's to the little things.",
+"Here's to the little things.",
 
-    "A memory that is special for you",
+"A memory that is special for you.",
 
-    "This and all of the many pictures",
+"This and all of the many pictures",
 
-    "You had throughout your life",
+"you had throughout your life.",
 
-    "Is a memory captured of who we see right now"
+"A memory captured of who we see right now."
+```
 
 ];
-
-
-// ============================================
-// PHOTO STATE
-// ============================================
-
-let currentPhoto = 0;
-
-
-// ============================================
-// START MUSIC
-// ============================================
-
-function startMusic() {
-
-    music.volume = 0.5;
-
-    music.play()
-        .then(() => {
-
-            musicButton.textContent = "♫";
-
-        })
-        .catch((error) => {
-
-            console.error(
-                "Music failed to start:",
-                error
-            );
-
-        });
-
-}
-
-
-// ============================================
-// TOGGLE MUSIC
-// ============================================
-
-function toggleMusic() {
-
-    if (music.paused) {
-
-        music.play()
-            .then(() => {
-
-                musicButton.textContent = "♫";
-
-            })
-            .catch((error) => {
-
-                console.error(
-                    "Music failed:",
-                    error
-                );
-
-            });
-
-    } else {
-
-        music.pause();
-
-        musicButton.textContent = "♪";
-
-    }
-
-}
-
-
-// ============================================
-// BEGIN EXPERIENCE
-// ============================================
-
-function beginExperience() {
-
-    // Start music
-    startMusic();
-
-
-    // Fade out opening screen
-    openingScreen.style.opacity = "0";
-
-    openingScreen.style.transform =
-        "translateY(-25px)";
-
-
-    // Move to photo experience
-    setTimeout(() => {
-
-        openingScreen.style.display = "none";
-
-        showPhotoScreen();
-
-    }, 900);
-
-}
-
-
-// ============================================
-// SHOW PHOTO SCREEN
-// ============================================
-
-function showPhotoScreen() {
-
-    photoScreen.classList.add("active");
-
-    loadPhoto();
-
-}
-
-
-// ============================================
-// LOAD CURRENT PHOTO
-// ============================================
-
-function loadPhoto() {
-
-    // Hide current image
-    memoryImage.classList.remove("visible");
-
-    memoryImage.classList.remove(
-        "photo-changing"
-    );
-
-
-    // Set image
-    memoryImage.src =
-        photos[currentPhoto];
-
-
-    // Set counter
-    const number =
-        String(currentPhoto + 1)
-            .padStart(2, "0");
-
-    const total =
-        String(photos.length)
-            .padStart(2, "0");
-
-    photoCounter.textContent =
-        `${number} / ${total}`;
-
-
-    // Set caption
-    memoryCaption.textContent =
-        captions[currentPhoto];
-
-
-    // Wait for image to load
-    memoryImage.onload = () => {
-
-        memoryImage.classList.add(
-            "photo-changing"
-        );
-
-        memoryImage.classList.add(
-            "visible"
-        );
-
-    };
-
-}
-
-
-// ============================================
-// NEXT PHOTO
-// ============================================
-
-function nextPhoto() {
-
-    if (
-        currentPhoto <
-        photos.length - 1
-    ) {
-
-        currentPhoto++;
-
-        loadPhoto();
-
-        return;
-
-    }
-
-
-    // All photos finished
-    showMessage();
-
-}
-
-
-// ============================================
-// SHOW MESSAGE
-// ============================================
-
-function showMessage() {
-
-    photoScreen.classList.remove(
-        "active"
-    );
-
-
-    setTimeout(() => {
-
-        messageScreen.classList.add(
-            "active"
-        );
-
-    }, 500);
-
-}
-
-
-// ============================================
-// SHOW FINALE
-// ============================================
-
-function showFinale() {
-
-    messageScreen.classList.remove(
-        "active"
-    );
-
-
-    setTimeout(() => {
-
-        finaleScreen.classList.add(
-            "active"
-        );
-
-
-        setTimeout(() => {
-
-            endingScreen.classList.add(
-                "active"
-            );
-
-        }, 3500);
-
-    }, 700);
-
-}
-
-
-// ============================================
-// SWIPE SUPPORT
-// ============================================
-
-let touchStartX = 0;
-
-let touchEndX = 0;
-
-
-photoScreen.addEventListener(
-    "touchstart",
-    (event) => {
-
-        touchStartX =
-            event.changedTouches[0].screenX;
-
-    },
-    { passive: true }
-);
-
-
-photoScreen.addEventListener(
-    "touchend",
-    (event) => {
-
-        touchEndX =
-            event.changedTouches[0].screenX;
-
-        handleSwipe();
-
-    },
-    { passive: true }
-);
-
-
-function handleSwipe() {
-
-    const distance =
-        touchEndX - touchStartX;
-
-
-    if (distance < -50) {
-
-        nextPhoto();
-
-    }
-
-}
-
-
-// ============================================
-// KEYBOARD SUPPORT
-// ============================================
-
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (
-            !photoScreen.classList.contains(
-                "active"
-            )
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            event.key === "ArrowRight" ||
-            event.key === " "
-        ) {
-
-            nextPhoto();
-
-        }
-
-    }
-);const memoryCaption =
-    document.getElementById("memory-caption");
-
-
-// ============================================
-// MUSIC
-// ============================================
-
-const music =
-    document.getElementById("daylight-music");
-
-const musicButton =
-    document.getElementById("music-button");
-
-
-// ============================================
-// BEGIN MUSIC
-// ============================================
-
-function startMusic() {
-
-    music.volume = 0.5;
-
-    music.play()
-        .then(() => {
-
-            musicButton.textContent = "♫";
-
-        })
-        .catch((error) => {
-
-            console.error(
-                "Music failed to start:",
-                error
-            );
-
-        });
-
-}
-
-
-// ============================================
-// MUSIC TOGGLE
-// ============================================
-
-function toggleMusic() {
-
-    if (music.paused) {
-
-        music.play()
-            .then(() => {
-
-                musicButton.textContent = "♫";
-
-            })
-            .catch((error) => {
-
-                console.error(
-                    "Music failed:",
-                    error
-                );
-
-            });
-
-    } else {
-
-        music.pause();
-
-        musicButton.textContent = "♪";
-
-    }
-
-}
-
-
-// ============================================
-// PHOTOS
-// ============================================
-
-const photos = [
-
-    "ashlyn01.png",
-
-    "ashlyn02.png",
-
-    "ashlyn03.png",
-
-    "ashlyn04.png",
-
-    "ashlyn05.png",
-
-    "ashlyn06.jpeg",
-
-    "ashlyn07.jpeg",
-
-    "ashlyn08.jpeg"
-
-];
-
-
-// ============================================
-// PHOTO CAPTIONS
-// ============================================
-
-const captions = [
-
-    "A little moment worth remembering.",
-
-    "Some memories deserve to stay.",
-
-    "A moment captured in time.",
-
-    "Here's to the little things.",
-
-    "A memory that is special for you",
-
-    "This and all of the many pictures",
-
-    "You had throughout your life",
-
-    "Is a memory captured of who we see right now"
-
-];
-
 
 // ============================================
 // CURRENT PHOTO
@@ -532,6 +87,63 @@ const captions = [
 
 let currentPhoto = 0;
 
+// ============================================
+// MUSIC
+// ============================================
+
+function startMusic() {
+
+```
+music.volume = 0.5;
+
+music.play()
+    .then(() => {
+
+        musicButton.textContent = "♫";
+
+    })
+    .catch((error) => {
+
+        console.error(
+            "Music failed to start:",
+            error
+        );
+
+    });
+```
+
+}
+
+function toggleMusic() {
+
+```
+if (music.paused) {
+
+    music.play()
+        .then(() => {
+
+            musicButton.textContent = "♫";
+
+        })
+        .catch((error) => {
+
+            console.error(
+                "Music failed:",
+                error
+            );
+
+        });
+
+} else {
+
+    music.pause();
+
+    musicButton.textContent = "♪";
+
+}
+```
+
+}
 
 // ============================================
 // BEGIN EXPERIENCE
@@ -539,30 +151,29 @@ let currentPhoto = 0;
 
 function beginExperience() {
 
-
-    startMusic();
-
-
-    // Fade opening
-
-    openingScreen.style.opacity = "0";
-
-    openingScreen.style.transform =
-        "translateY(-25px)";
+```
+// Start Daylight
+startMusic();
 
 
-    // Wait for transition
+// Fade out opening screen
+openingScreen.style.opacity = "0";
 
-    setTimeout(() => {
+openingScreen.style.transform =
+    "translateY(-25px)";
 
-        openingScreen.style.display = "none";
 
-        showPhotoScreen();
+// Show photos after transition
+setTimeout(() => {
 
-    }, 900);
+    openingScreen.style.display = "none";
+
+    showPhotoScreen();
+
+}, 900);
+```
 
 }
-
 
 // ============================================
 // SHOW PHOTO SCREEN
@@ -570,68 +181,78 @@ function beginExperience() {
 
 function showPhotoScreen() {
 
-    photoScreen.classList.add("active");
+```
+photoScreen.classList.add("active");
 
-    loadPhoto();
+loadPhoto();
+```
 
 }
 
-
 // ============================================
-// LOAD PHOTO
+// LOAD CURRENT PHOTO
 // ============================================
 
 function loadPhoto() {
 
+```
+// Hide old photo
+memoryImage.classList.remove("visible");
 
-    // Remove old animation
+memoryImage.classList.remove(
+    "photo-changing"
+);
 
-    memoryImage.classList.remove("visible");
 
-    memoryImage.classList.remove(
+// Set new image
+memoryImage.src =
+    photos[currentPhoto];
+
+
+// Counter
+const number =
+    String(currentPhoto + 1)
+        .padStart(2, "0");
+
+const total =
+    String(photos.length)
+        .padStart(2, "0");
+
+photoCounter.textContent =
+    `${number} / ${total}`;
+
+
+// Caption
+memoryCaption.textContent =
+    captions[currentPhoto];
+
+
+// Wait for image to load
+memoryImage.onload = () => {
+
+    memoryImage.classList.add(
         "photo-changing"
     );
 
+    memoryImage.classList.add(
+        "visible"
+    );
 
-    // Update image
-
-    memoryImage.src =
-        photos[currentPhoto];
-
-
-    // Update counter
-
-    const number =
-        String(currentPhoto + 1)
-            .padStart(2, "0");
+};
 
 
-    photoCounter.textContent =
-        `${number} / ${String(photos.length).padStart(2, "0")}`;
+// Detect missing image
+memoryImage.onerror = () => {
 
+    console.error(
+        "Could not load image:",
+        photos[currentPhoto]
+    );
 
-    // Update caption
-
-    memoryCaption.textContent =
-        captions[currentPhoto];
-
-
-    // Wait for image
-
-    memoryImage.onload = () => {
-
-        memoryImage.classList.add(
-            "photo-changing"
-        );
-
-        memoryImage.classList.add(
-            "visible"
-        );
-
-    };
+};
+```
 
 }
-
 
 // ============================================
 // NEXT PHOTO
@@ -639,27 +260,26 @@ function loadPhoto() {
 
 function nextPhoto() {
 
+```
+if (
+    currentPhoto <
+    photos.length - 1
+) {
 
-    if (
-        currentPhoto <
-        photos.length - 1
-    ) {
+    currentPhoto++;
 
-        currentPhoto++;
+    loadPhoto();
 
-        loadPhoto();
-
-        return;
-
-    }
-
-
-    // Last photo
-
-    showMessage();
+    return;
 
 }
 
+
+// Last photo reached
+showMessage();
+```
+
+}
 
 // ============================================
 // SHOW MESSAGE
@@ -667,22 +287,22 @@ function nextPhoto() {
 
 function showMessage() {
 
+```
+photoScreen.classList.remove(
+    "active"
+);
 
-    photoScreen.classList.remove(
+
+setTimeout(() => {
+
+    messageScreen.classList.add(
         "active"
     );
 
-
-    setTimeout(() => {
-
-        messageScreen.classList.add(
-            "active"
-        );
-
-    }, 500);
+}, 500);
+```
 
 }
-
 
 // ============================================
 // SHOW FINALE
@@ -690,31 +310,32 @@ function showMessage() {
 
 function showFinale() {
 
+```
+messageScreen.classList.remove(
+    "active"
+);
 
-    messageScreen.classList.remove(
+
+setTimeout(() => {
+
+    finaleScreen.classList.add(
         "active"
     );
 
 
+    // Show final tiny message
     setTimeout(() => {
 
-        finaleScreen.classList.add(
+        endingScreen.classList.add(
             "active"
         );
 
+    }, 3500);
 
-        setTimeout(() => {
-
-            endingScreen.classList.add(
-                "active"
-            );
-
-        }, 3500);
-
-    }, 700);
+}, 700);
+```
 
 }
-
 
 // ============================================
 // SWIPE SUPPORT
@@ -724,79 +345,99 @@ let touchStartX = 0;
 
 let touchEndX = 0;
 
-
 photoScreen.addEventListener(
-    "touchstart",
-    (event) => {
+"touchstart",
+(event) => {
 
-        touchStartX =
-            event.changedTouches[0].screenX;
+```
+    touchStartX =
+        event.changedTouches[0].screenX;
 
-    },
-    { passive: true }
+},
+{
+    passive: true
+}
+```
+
 );
 
-
 photoScreen.addEventListener(
-    "touchend",
-    (event) => {
+"touchend",
+(event) => {
 
-        touchEndX =
-            event.changedTouches[0].screenX;
+```
+    touchEndX =
+        event.changedTouches[0].screenX;
 
-        handleSwipe();
+    handleSwipe();
 
-    },
-    { passive: true }
+},
+{
+    passive: true
+}
+```
+
 );
-
 
 function handleSwipe() {
 
+```
+const distance =
+    touchEndX - touchStartX;
 
-    const distance =
-        touchEndX - touchStartX;
 
+// Swipe left
+if (distance < -50) {
 
-    // Swipe left
-
-    if (distance < -50) {
-
-        nextPhoto();
-
-    }
+    nextPhoto();
 
 }
+```
 
+}
 
 // ============================================
 // KEYBOARD SUPPORT
 // ============================================
 
 document.addEventListener(
-    "keydown",
-    (event) => {
+"keydown",
+(event) => {
 
+```
+    // Only work while photos are visible
+    if (
+        !photoScreen.classList.contains(
+            "active"
+        )
+    ) {
 
-        if (
-            !photoScreen.classList.contains(
-                "active"
-            )
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            event.key === "ArrowRight" ||
-            event.key === " "
-        ) {
-
-            nextPhoto();
-
-        }
+        return;
 
     }
+
+
+    // Right arrow or space
+    if (
+        event.key === "ArrowRight" ||
+        event.key === " "
+    ) {
+
+        event.preventDefault();
+
+        nextPhoto();
+
+    }
+
+}
+```
+
+);
+
+// ============================================
+// DEBUG MESSAGE
+// ============================================
+
+console.log(
+"Ashlyn birthday experience loaded successfully."
 );
