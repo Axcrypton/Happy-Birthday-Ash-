@@ -42,7 +42,7 @@ document.getElementById("memory-caption");
 
 const photos = [
 
-```
+
 "ashlyn01.png",
 "ashlyn02.png",
 "ashlyn03.png",
@@ -51,7 +51,7 @@ const photos = [
 "ashlyn06.jpeg",
 "ashlyn07.jpeg",
 "ashlyn08.jpeg"
-```
+
 
 ];
 
@@ -61,7 +61,7 @@ const photos = [
 
 const captions = [
 
-```
+
 "A little moment worth remembering.",
 
 "Some memories deserve to stay.",
@@ -77,7 +77,7 @@ const captions = [
 "you had throughout your life.",
 
 "A memory captured of who we see right now."
-```
+
 
 ];
 
@@ -93,7 +93,7 @@ let currentPhoto = 0;
 
 function startMusic() {
 
-```
+
 music.volume = 0.5;
 
 music.play()
@@ -110,13 +110,13 @@ music.play()
         );
 
     });
-```
+
 
 }
 
 function toggleMusic() {
 
-```
+
 if (music.paused) {
 
     music.play()
@@ -141,7 +141,7 @@ if (music.paused) {
     musicButton.textContent = "♪";
 
 }
-```
+
 
 }
 
@@ -151,7 +151,7 @@ if (music.paused) {
 
 function beginExperience() {
 
-```
+
 // Start Daylight
 startMusic();
 
@@ -171,7 +171,7 @@ setTimeout(() => {
     showPhotoScreen();
 
 }, 900);
-```
+
 
 }
 
@@ -181,11 +181,11 @@ setTimeout(() => {
 
 function showPhotoScreen() {
 
-```
+
 photoScreen.classList.add("active");
 
 loadPhoto();
-```
+
 
 }
 
@@ -195,7 +195,7 @@ loadPhoto();
 
 function loadPhoto() {
 
-```
+
 // Hide old photo
 memoryImage.classList.remove("visible");
 
@@ -250,7 +250,7 @@ memoryImage.onerror = () => {
     );
 
 };
-```
+
 
 }
 
@@ -260,7 +260,7 @@ memoryImage.onerror = () => {
 
 function nextPhoto() {
 
-```
+
 if (
     currentPhoto <
     photos.length - 1
@@ -277,7 +277,7 @@ if (
 
 // Last photo reached
 showMessage();
-```
+
 
 }
 
@@ -287,7 +287,7 @@ showMessage();
 
 function showMessage() {
 
-```
+
 photoScreen.classList.remove(
     "active"
 );
@@ -300,7 +300,7 @@ setTimeout(() => {
     );
 
 }, 500);
-```
+
 
 }
 
@@ -310,7 +310,7 @@ setTimeout(() => {
 
 function showFinale() {
 
-```
+
 messageScreen.classList.remove(
     "active"
 );
@@ -333,7 +333,7 @@ setTimeout(() => {
     }, 3500);
 
 }, 700);
-```
+
 
 }
 
@@ -349,7 +349,7 @@ photoScreen.addEventListener(
 "touchstart",
 (event) => {
 
-```
+
     touchStartX =
         event.changedTouches[0].screenX;
 
@@ -357,7 +357,7 @@ photoScreen.addEventListener(
 {
     passive: true
 }
-```
+
 
 );
 
@@ -365,7 +365,7 @@ photoScreen.addEventListener(
 "touchend",
 (event) => {
 
-```
+
     touchEndX =
         event.changedTouches[0].screenX;
 
@@ -375,13 +375,13 @@ photoScreen.addEventListener(
 {
     passive: true
 }
-```
+
 
 );
 
 function handleSwipe() {
 
-```
+
 const distance =
     touchEndX - touchStartX;
 
@@ -392,7 +392,7 @@ if (distance < -50) {
     nextPhoto();
 
 }
-```
+
 
 }
 
@@ -404,7 +404,7 @@ document.addEventListener(
 "keydown",
 (event) => {
 
-```
+
     // Only work while photos are visible
     if (
         !photoScreen.classList.contains(
@@ -430,7 +430,7 @@ document.addEventListener(
     }
 
 }
-```
+
 
 );
 
