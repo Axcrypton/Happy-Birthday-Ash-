@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>For Ashlyn ☀️</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =================================
+         BACKGROUND MUSIC
+    ================================== -->
+
+    <audio
+        id="daylight-music"
+        loop
+    >
+        <source
+            src="music/daylight.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
+
+
+    <!-- =================================
+         MUSIC BUTTON
+    ================================== -->
+
+    <button
+        id="music-button"
+        class="music-button"
+        onclick="toggleMusic()"
+        aria-label="Toggle music"
+    >
+        ♫
+    </button>
+
+
+    <!-- =================================
+         DECORATIVE LIGHT
+    ================================== -->
+
+    <div class="sun-glow"></div>
+
+    <div class="light-particle particle-one"></div>
+    <div class="light-particle particle-two"></div>
+    <div class="light-particle particle-three"></div>
+
+
+    <!-- =================================
+         MAIN CONTENT
+    ================================== -->
+
+    <main class="opening-screen">
+
+
+        <!-- Small label -->
+
+        <p class="eyebrow">
+            A LITTLE SOMETHING FOR YOU
+        </p>
+
+
+        <!-- Main title -->
+
+        <h1>
+            Ashlyn
+        </h1>
+
+
+        <!-- Decorative line -->
+
+        <div class="sun-line">
+            <span></span>
+            ☼
+            <span></span>
+        </div>
+
+
+        <!-- Main message -->
+
+        <p class="opening-message">
+            I made something small
+            <br>
+            just for you.
+        </p>
+
+
+        <!-- Start button -->
+
+        <button
+            id="begin-button"
+            class="begin-button"
+            onclick="beginExperience()"
+        >
+            Begin
+            <span>✦</span>
+        </button>
+
+
+        <!-- Small hint -->
+
+        <p class="hint">
+            headphones recommended ♫
+        </p>
+
+    </main>
+
+
+    <!-- =================================
+         NEXT SCREEN
+         
+         This is only a temporary screen.
+         We'll replace it in Step 2 with
+         the actual photo experience.
+    ================================== -->
+
+    <section
+        id="intro-screen"
+        class="intro-screen"
+    >
+
+        <div class="intro-content">
+
+            <p class="eyebrow">
+                FOR YOU
+            </p>
+
+            <h2>
+                Let's begin.
+            </h2>
+
+            <div class="intro-line"></div>
+
+            <p>
+                There's a little more
+                waiting for you.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
