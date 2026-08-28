@@ -1,1 +1,614 @@
+/* =================================
+   RESET
+================================= */
 
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+
+/* =================================
+   BODY
+================================= */
+
+body {
+
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7efe2,
+            #ead8c5,
+            #f5e7d3
+        );
+
+    color: #3d3028;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+/* =================================
+   SOFT SUNLIGHT
+================================= */
+
+.sun-glow {
+
+    position: fixed;
+
+    width: 500px;
+    height: 500px;
+
+    top: -180px;
+    right: -150px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 214, 130, 0.55),
+            rgba(255, 214, 130, 0.15) 45%,
+            transparent 70%
+        );
+
+    filter: blur(10px);
+
+    pointer-events: none;
+
+    animation:
+        sunlight 8s ease-in-out infinite alternate;
+}
+
+
+/* =================================
+   LIGHT PARTICLES
+================================= */
+
+.light-particle {
+
+    position: fixed;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.75);
+
+    box-shadow:
+        0 0 15px
+        rgba(255, 220, 150, 0.8);
+
+    pointer-events: none;
+}
+
+
+.particle-one {
+
+    top: 25%;
+    left: 15%;
+
+    animation:
+        floatParticle 7s ease-in-out infinite;
+}
+
+
+.particle-two {
+
+    top: 65%;
+    right: 18%;
+
+    width: 5px;
+    height: 5px;
+
+    animation:
+        floatParticle 9s ease-in-out infinite
+        1s;
+}
+
+
+.particle-three {
+
+    top: 40%;
+    right: 30%;
+
+    width: 4px;
+    height: 4px;
+
+    animation:
+        floatParticle 8s ease-in-out infinite
+        2s;
+}
+
+
+/* =================================
+   OPENING SCREEN
+================================= */
+
+.opening-screen {
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    position: relative;
+
+    z-index: 2;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+
+/* =================================
+   SMALL TOP TEXT
+================================= */
+
+.eyebrow {
+
+    margin: 0 0 20px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 4px;
+
+    color: #92765e;
+
+    text-transform: uppercase;
+}
+
+
+/* =================================
+   NAME
+================================= */
+
+h1 {
+
+    margin: 0;
+
+    font-size:
+        clamp(4rem, 18vw, 8rem);
+
+    font-weight: normal;
+
+    font-style: italic;
+
+    letter-spacing: -3px;
+
+    color: #5b4636;
+
+    text-shadow:
+        2px 3px 0
+        rgba(255, 255, 255, 0.5);
+
+    animation:
+        nameReveal 1.2s ease;
+}
+
+
+/* =================================
+   SUN LINE
+================================= */
+
+.sun-line {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin: 15px 0 25px;
+
+    color: #bd8c4a;
+
+    font-size: 1.1rem;
+}
+
+
+.sun-line span {
+
+    width: 45px;
+
+    height: 1px;
+
+    background:
+        #bd8c4a;
+}
+
+
+/* =================================
+   OPENING MESSAGE
+================================= */
+
+.opening-message {
+
+    margin: 0;
+
+    color: #705b4b;
+
+    font-size:
+        clamp(1rem, 4vw, 1.25rem);
+
+    line-height: 1.8;
+
+    font-style: italic;
+}
+
+
+/* =================================
+   BEGIN BUTTON
+================================= */
+
+.begin-button {
+
+    margin-top: 40px;
+
+    padding:
+        14px 32px;
+
+    border: 1px solid
+        rgba(125, 91, 55, 0.5);
+
+    border-radius: 50px;
+
+    background:
+        rgba(255, 250, 240, 0.45);
+
+    color: #5b4636;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 0.9rem;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.begin-button span {
+
+    margin-left: 8px;
+
+    color: #bd8c4a;
+}
+
+
+.begin-button:hover {
+
+    transform:
+        translateY(-3px);
+
+    background:
+        rgba(255, 250, 240, 0.8);
+
+    box-shadow:
+        0 10px 30px
+        rgba(120, 85, 45, 0.15);
+}
+
+
+.begin-button:active {
+
+    transform:
+        scale(0.96);
+}
+
+
+/* =================================
+   HINT
+================================= */
+
+.hint {
+
+    margin-top: 25px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 1px;
+
+    color: #a18b78;
+
+    opacity: 0.8;
+}
+
+
+/* =================================
+   MUSIC BUTTON
+================================= */
+
+.music-button {
+
+    position: fixed;
+
+    top: 22px;
+    right: 22px;
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    border: 1px solid
+        rgba(100, 75, 50, 0.25);
+
+    background:
+        rgba(255, 250, 240, 0.5);
+
+    color: #6b5340;
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    backdrop-filter:
+        blur(8px);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.music-button:hover {
+
+    transform: scale(1.08);
+
+    background:
+        rgba(255, 250, 240, 0.85);
+}
+
+
+/* =================================
+   TEMPORARY INTRO SCREEN
+================================= */
+
+.intro-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    background:
+        #f7efe2;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform:
+        translateY(20px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+
+.intro-screen.active {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+    transform:
+        translateY(0);
+}
+
+
+.intro-content h2 {
+
+    margin: 10px 0;
+
+    font-size:
+        clamp(2.5rem, 10vw, 4rem);
+
+    font-weight: normal;
+
+    font-style: italic;
+
+    color: #5b4636;
+}
+
+
+.intro-content p:last-child {
+
+    color: #806b59;
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+}
+
+
+.intro-line {
+
+    width: 60px;
+
+    height: 1px;
+
+    margin: 20px auto;
+
+    background:
+        #bd8c4a;
+}
+
+
+/* =================================
+   ANIMATIONS
+================================= */
+
+@keyframes sunlight {
+
+    from {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    to {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+
+@keyframes floatParticle {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            translateX(0);
+
+        opacity: 0.3;
+    }
+
+    50% {
+
+        transform:
+            translateY(-30px)
+            translateX(15px);
+
+        opacity: 0.9;
+    }
+}
+
+
+@keyframes nameReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.95);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        overflow-y: auto;
+    }
+
+
+    .opening-screen {
+
+        padding:
+            25px 20px;
+    }
+
+
+    .sun-glow {
+
+        width: 350px;
+        height: 350px;
+
+        top: -120px;
+        right: -130px;
+    }
+
+
+    .music-button {
+
+        top: 15px;
+        right: 15px;
+
+        width: 42px;
+        height: 42px;
+    }
+
+
+    .sun-line span {
+
+        width: 30px;
+    }
+
+
+    .begin-button {
+
+        margin-top: 30px;
+
+        padding:
+            13px 27px;
+    }
+}
