@@ -39,6 +39,373 @@ const memoryCaption =
 
 
 // ============================================
+// PHOTOS
+// ============================================
+
+const photos = [
+
+    "photos/ashlyn01.png",
+    "photos/ashlyn02.png",
+    "photos/ashlyn03.png",
+    "photos/ashlyn04.png",
+    "photos/ashlyn05.png",
+    "photos/ashlyn06.jpeg",
+    "photos/ashlyn07.jpeg",
+    "photos/ashlyn08.jpeg"
+
+];
+
+
+// ============================================
+// PHOTO CAPTIONS
+// ============================================
+
+const captions = [
+
+    "A little moment worth remembering.",
+
+    "Some memories deserve to stay.",
+
+    "A moment captured in time.",
+
+    "Here's to the little things.",
+
+    "A memory that is special for you",
+
+    "This and all of the many pictures",
+
+    "You had throughout your life",
+
+    "Is a memory captured of who we see right now"
+
+];
+
+
+// ============================================
+// PHOTO STATE
+// ============================================
+
+let currentPhoto = 0;
+
+
+// ============================================
+// START MUSIC
+// ============================================
+
+function startMusic() {
+
+    music.volume = 0.5;
+
+    music.play()
+        .then(() => {
+
+            musicButton.textContent = "♫";
+
+        })
+        .catch((error) => {
+
+            console.error(
+                "Music failed to start:",
+                error
+            );
+
+        });
+
+}
+
+
+// ============================================
+// TOGGLE MUSIC
+// ============================================
+
+function toggleMusic() {
+
+    if (music.paused) {
+
+        music.play()
+            .then(() => {
+
+                musicButton.textContent = "♫";
+
+            })
+            .catch((error) => {
+
+                console.error(
+                    "Music failed:",
+                    error
+                );
+
+            });
+
+    } else {
+
+        music.pause();
+
+        musicButton.textContent = "♪";
+
+    }
+
+}
+
+
+// ============================================
+// BEGIN EXPERIENCE
+// ============================================
+
+function beginExperience() {
+
+    // Start music
+    startMusic();
+
+
+    // Fade out opening screen
+    openingScreen.style.opacity = "0";
+
+    openingScreen.style.transform =
+        "translateY(-25px)";
+
+
+    // Move to photo experience
+    setTimeout(() => {
+
+        openingScreen.style.display = "none";
+
+        showPhotoScreen();
+
+    }, 900);
+
+}
+
+
+// ============================================
+// SHOW PHOTO SCREEN
+// ============================================
+
+function showPhotoScreen() {
+
+    photoScreen.classList.add("active");
+
+    loadPhoto();
+
+}
+
+
+// ============================================
+// LOAD CURRENT PHOTO
+// ============================================
+
+function loadPhoto() {
+
+    // Hide current image
+    memoryImage.classList.remove("visible");
+
+    memoryImage.classList.remove(
+        "photo-changing"
+    );
+
+
+    // Set image
+    memoryImage.src =
+        photos[currentPhoto];
+
+
+    // Set counter
+    const number =
+        String(currentPhoto + 1)
+            .padStart(2, "0");
+
+    const total =
+        String(photos.length)
+            .padStart(2, "0");
+
+    photoCounter.textContent =
+        `${number} / ${total}`;
+
+
+    // Set caption
+    memoryCaption.textContent =
+        captions[currentPhoto];
+
+
+    // Wait for image to load
+    memoryImage.onload = () => {
+
+        memoryImage.classList.add(
+            "photo-changing"
+        );
+
+        memoryImage.classList.add(
+            "visible"
+        );
+
+    };
+
+}
+
+
+// ============================================
+// NEXT PHOTO
+// ============================================
+
+function nextPhoto() {
+
+    if (
+        currentPhoto <
+        photos.length - 1
+    ) {
+
+        currentPhoto++;
+
+        loadPhoto();
+
+        return;
+
+    }
+
+
+    // All photos finished
+    showMessage();
+
+}
+
+
+// ============================================
+// SHOW MESSAGE
+// ============================================
+
+function showMessage() {
+
+    photoScreen.classList.remove(
+        "active"
+    );
+
+
+    setTimeout(() => {
+
+        messageScreen.classList.add(
+            "active"
+        );
+
+    }, 500);
+
+}
+
+
+// ============================================
+// SHOW FINALE
+// ============================================
+
+function showFinale() {
+
+    messageScreen.classList.remove(
+        "active"
+    );
+
+
+    setTimeout(() => {
+
+        finaleScreen.classList.add(
+            "active"
+        );
+
+
+        setTimeout(() => {
+
+            endingScreen.classList.add(
+                "active"
+            );
+
+        }, 3500);
+
+    }, 700);
+
+}
+
+
+// ============================================
+// SWIPE SUPPORT
+// ============================================
+
+let touchStartX = 0;
+
+let touchEndX = 0;
+
+
+photoScreen.addEventListener(
+    "touchstart",
+    (event) => {
+
+        touchStartX =
+            event.changedTouches[0].screenX;
+
+    },
+    { passive: true }
+);
+
+
+photoScreen.addEventListener(
+    "touchend",
+    (event) => {
+
+        touchEndX =
+            event.changedTouches[0].screenX;
+
+        handleSwipe();
+
+    },
+    { passive: true }
+);
+
+
+function handleSwipe() {
+
+    const distance =
+        touchEndX - touchStartX;
+
+
+    if (distance < -50) {
+
+        nextPhoto();
+
+    }
+
+}
+
+
+// ============================================
+// KEYBOARD SUPPORT
+// ============================================
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            !photoScreen.classList.contains(
+                "active"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.key === "ArrowRight" ||
+            event.key === " "
+        ) {
+
+            nextPhoto();
+
+        }
+
+    }
+);const memoryCaption =
+    document.getElementById("memory-caption");
+
+
+// ============================================
 // MUSIC
 // ============================================
 
